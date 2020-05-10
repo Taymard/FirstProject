@@ -8,8 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
@@ -41,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private SharedPreferences sharedPreferences;
     private Gson gson;
+    private MediaPlayer mediaPlayer;
 
-    private static final String BASE_URL = "https://pokeapi.co/";
+    private static final String BASE_URL = "https://raw.githubusercontent.com/Taymard/FirstProject/master/";
     private ArFragment arFragment;
     private String ASSET_3D = "";
 
@@ -66,11 +70,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+        mediaPlayer = MediaPlayer.create(this,R.raw.pokemon_fireredleafgreen_route_11);
+        if (mediaPlayer.isPlaying() == false) {
+            mediaPlayer.start();
+            mediaPlayer.setLooping(true);
+        }
+
+
         /*
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
             placeModel(hitResult.createAnchor());
         });*/
+    }
+
+    private void releaseMediaPlayer() {
+        if(mediaPlayer != null)
+        {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
     /*private void placeModel(Anchor anchor) {

@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface PokeApi {
-    @GET("/api/v2/pokemon")
+    @GET("data.json")
     Call<RestPokemonResponse> getPokemonResponse();
 }

@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 import static androidx.core.content.ContextCompat.startActivity;
@@ -18,7 +20,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private List<Pokemon> values;
     private Context context1;
 
-    public static final String EXTRA_TEXT = "com.example.application.example.EXTRA_TEXT";
+
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -27,6 +29,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // each data item is just a string in this case
         TextView txtHeader;
         TextView txtFooter;
+        ImageView imageView;
         View layout;
 
         ViewHolder(View v) {
@@ -34,6 +37,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             layout = v;
             txtHeader = (TextView) v.findViewById(R.id.firstLine);
             txtFooter = (TextView) v.findViewById(R.id.secondLine);
+            imageView = (ImageView) v.findViewById(R.id.icon);
         }
     }
 
@@ -75,12 +79,20 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             public void onClick(View v) {
 
                 Intent intent = new Intent(context1,Activity2.class);
-                intent.putExtra(EXTRA_TEXT,currentPokemon.getName());
+                intent.putExtra("name",currentPokemon.getName());
+                intent.putExtra("type",currentPokemon.getType());
+                intent.putExtra("weaknesses",currentPokemon.getWeaknesses());
+                intent.putExtra("height",currentPokemon.getHeight());
+                intent.putExtra("weight",currentPokemon.getWeight());
+                intent.putExtra("prev",currentPokemon.getPrev_evolution());
+                intent.putExtra("next",currentPokemon.getNext_evolution());
+                intent.putExtra("img",currentPokemon.getImg());
                 context1.startActivity(intent);
             }
         });
 
-        holder.txtFooter.setText(currentPokemon.getUrl());
+        holder.txtFooter.setText(currentPokemon.getNum());
+        Glide.with(context1).load(currentPokemon.getImg()).into(holder.imageView);
     }
 
 
