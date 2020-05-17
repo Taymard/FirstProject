@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String BASE_URL = "https://raw.githubusercontent.com/Taymard/FirstProject/master/";
     private ArFragment arFragment;
-    private String ASSET_3D = "";
+    private String ASSET_3D = "pikachu.gltf";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,48 +77,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        /*
-        arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
-        arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
-            placeModel(hitResult.createAnchor());
-        });*/
+
     }
 
-    private void releaseMediaPlayer() {
-        if(mediaPlayer != null)
-        {
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
-    }
 
-    /*private void placeModel(Anchor anchor) {
-        ModelRenderable
-                .builder()
-                .setSource(
-                        this,
-                        RenderableSource
-                                .builder()
-                                .setSource(this,Uri.parse(ASSET_3D),RenderableSource.SourceType.GLTF2)
-                                .setScale(0.75f)
-                                .setRecenterMode(RenderableSource.RecenterMode.ROOT)
-                                .build()
-                )
-                .setRegistryId(ASSET_3D)
-                .build()
-                .thenAccept(modelRenderable -> addNodeToScene(modelRenderable,anchor))
-                .exceptionally(throwable -> {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage(throwable.getMessage()).show();
-                    return null;
-                });
-    }*/
 
-    /*private void addNodeToScene(ModelRenderable modelRenderable, Anchor anchor) {
-        AnchorNode anchorNode = new AnchorNode(anchor);
-        anchorNode.setRenderable(modelRenderable);
-        arFragment.getArSceneView().getScene().addChild(anchorNode);
-    }*/
+
 
     private List<Pokemon> getDataFromCache() {
         String jsonPokemon = sharedPreferences.getString("jsonPokemonList",null);

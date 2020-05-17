@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ArCamera" android:parentActivityName=".Activity2" />
         <activity android:name=".Menu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,10 +27,8 @@
         </activity>
         <activity
             android:name=".Activity2"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".MainActivity"></activity>
 
         <meta-data
             android:name="com.google.ar.core"

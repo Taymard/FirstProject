@@ -1,10 +1,13 @@
 package com.example.firstproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.ShowableListMenu;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextDirectionHeuristic;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -46,6 +49,18 @@ public class Activity2 extends AppCompatActivity {
         Next.setText("Next Evolution : " + next);
         Glide.with(this).load(img).into(imageView);
 
+        Button model = (Button) findViewById(R.id.Model);
+        model.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Show3DModel();
+            }
+        });
 
+    }
+
+    private void Show3DModel() {
+        Intent intent = new Intent(this,ArCamera.class);
+        startActivity(intent);
     }
 }

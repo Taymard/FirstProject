@@ -1,13 +1,12 @@
 package com.example.firstproject;
 
-import android.content.Context;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
 
 import com.google.ar.core.Anchor;
 import com.google.ar.sceneform.AnchorNode;
@@ -15,24 +14,24 @@ import com.google.ar.sceneform.assets.RenderableSource;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
 
-public class ArCamera extends AppCompatActivity {
+public class Camera extends AppCompatActivity {
 
-    private ArFragment arFragment;
-    private String ASSET_3D = "pikachu.gltf";
+    ArFragment arFragment;
+    private String ASSET_3D = "";
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    protected void OnCreated(Bundle savedInstancdState)
-    {
-        super.onCreate(savedInstancdState);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
 
+
         arFragment = (ArFragment) getSupportFragmentManager().findFragmentById(R.id.arFragment);
-        arFragment.setOnTapArPlaneListener(((hitResult, plane, motionEvent) -> {
+        arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
             placeModel(hitResult.createAnchor());
-        }));
+        });
     }
-
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void placeModel(Anchor anchor) {
@@ -57,7 +56,7 @@ public class ArCamera extends AppCompatActivity {
                 });
     }
 
-     private void addNodeToScene(ModelRenderable modelRenderable, Anchor anchor) {
+    private void addNodeToScene(ModelRenderable modelRenderable, Anchor anchor) {
         AnchorNode anchorNode = new AnchorNode(anchor);
         anchorNode.setRenderable(modelRenderable);
         arFragment.getArSceneView().getScene().addChild(anchorNode);
