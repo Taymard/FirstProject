@@ -93,6 +93,22 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
         holder.txtFooter.setText(currentPokemon.getNum());
         Glide.with(context1).load(currentPokemon.getImg()).into(holder.imageView);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context1,Activity2.class);
+                intent.putExtra("name",currentPokemon.getName());
+                intent.putExtra("type",currentPokemon.getType());
+                intent.putExtra("weaknesses",currentPokemon.getWeaknesses());
+                intent.putExtra("height",currentPokemon.getHeight());
+                intent.putExtra("weight",currentPokemon.getWeight());
+                intent.putExtra("prev",currentPokemon.getPrev_evolution());
+                intent.putExtra("next",currentPokemon.getNext_evolution());
+                intent.putExtra("img",currentPokemon.getImg());
+                context1.startActivity(intent);
+
+            }
+        });
     }
 
 
